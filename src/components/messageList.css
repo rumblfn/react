@@ -1,0 +1,84 @@
+.message-list {
+    width: 50%;
+    min-height: 100vh;
+    border-left: 3px solid #AFEEEE;
+    border-right: 3px solid #AFEEEE;
+    margin: auto;
+    background-color:#E0FFFF;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.input-text {
+    margin-right: 2%;
+}
+
+.message-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-group {
+    display: flex;
+    width: 100%;
+}
+
+.input-text {
+    width: 70%;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.input-author {
+    width: 25%;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.btnAddMessage {
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #4676D7;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.btnAddMessage:hover {
+    background: #1d49aa;
+}
+  
+.btnAddMessage:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #cbd6ee;
+}
+
+.message {
+    border: 2px solid #5F9EA0;
+    padding: 7px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.messages {
+    margin: 15px 15px 0 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-item {
+    word-break: break-all;
+}
+
+.author {
+    color: #FF0000;
+}
