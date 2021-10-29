@@ -1,72 +1,126 @@
 import React, {useState, useEffect} from 'react';
 import './messageList.css';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import InputUnstyled from '@mui/core/InputUnstyled';
+import { Box, styled } from '@mui/system';
+import { Typography } from '@mui/material';
+
+const AnswerBox = styled(Box)({
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '0 20px',
+    boxSizing: 'border-box',
+    borderRadius: '5px',
+    width: '80%',
+    marginBottom: '10px'
+  });
+
+const StyledInputElement = styled('input')`
+  margin-right: 10px;
+  width: 200px;
+  font-size: 1rem;
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 400;
+  line-height: 1.4375em;
+  background: rgb(243, 246, 249);
+  border: 1px solid #e5e8ec;
+  border-radius: 4px;
+  padding: 6px 10px;
+  color: #20262d;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #eaeef3;
+    border-color: #e5e8ec;
+  }
+
+  &:focus {
+    outline: none;
+    border-radius: 10px;
+    transition: width 200ms ease-out;
+  }
+`;
+
+const Input = React.forwardRef(function CustomInput(props, ref) {
+  return (
+    <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />
+  );
+});
 
 const MessageList = function() {
     const [messageList, setMessageList] = useState([])
     const [textValue, setTextValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
-    const [currentAuthor, setCurrentAuthor] = useState('')
 
     const botName = 'Бот'
     const botMessage = 'сообщение бота'
 
-    // useEffect(() => {
-    //     if (currentAuthor !== botName && currentAuthor !== '') {
-    //         setCurrentAuthor(botName);
-    //         const newMessageList = [...messageList, {textValue: botMessage, authorValue: botName}];
-    //         setTimeout(() => {
-    //             setMessageList(newMessageList);
-    //         }, 1500)
-    //     }
-    // }, [messageList])
-
     useEffect(() => {
-        const interval = setInterval(() => {
-            if (currentAuthor !== botName && currentAuthor !== '') {
-                setCurrentAuthor(botName);
-                const newMessageList = [...messageList, {textValue: botMessage, authorValue: botName}];
-                setMessageList(newMessageList);
-            }
-        }, 1500);
-        return () => clearInterval(interval);
+        if (messageList.length === 0){
+            return null;
+        } else {
+            const time = setTimeout(() => {
+                if (messageList[messageList.length - 1].authorValue !== botName) {
+                    const newMessageList = [...messageList, {textValue: botMessage, authorValue: botName}];
+                    setMessageList(newMessageList);
+                }
+            }, 1500);
+            return () => clearTimeout(time);
+        }
     }, [messageList]);
 
     function changeMessageList() {
-        setCurrentAuthor(authorValue);
         const newMessageList = [...messageList, {textValue, authorValue}];
+        setTextValue('');
+        setAuthorValue('');
+        let focus = document.querySelector('#input-focus');
+        focus.focus();
         setMessageList(newMessageList);
     }
 
     return (
         <div className="message-list">
-            <div className="message-form">
+            <FormControl sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <div className="input-group">
-                    <input
-                        className="input-text"
+                    <Input
+                        id="input-focus"
+                        autoFocus="True"
                         type="text"
                         value={textValue}
                         onChange={event => setTextValue(event.target.value)}
                         placeholder="text..."
-                    />
-                    <input
-                        className="input-author"
+                    ></Input>
+                    <Input
                         type="text"
                         value={authorValue}
                         onChange={event => setAuthorValue(event.target.value)}
                         placeholder="Author..."
-                    />
+                    ></Input>
                 </div>
-                <button className='btnAddMessage' onClick={changeMessageList}>Add</button>
-            </div>
-            <ul className="messages">
-                {
-                    messageList.slice(0).reverse().map((item) => <li className="messages-item">
-                        <p className='message'><span className="author">{item.authorValue}: </span>
-                        <span className="text-value">{item.textValue}</span>
-                        </p>
-                    </li>)
-                }
-            </ul>
+                <Button variant="contained" onClick={changeMessageList}>Add</Button>
+            </FormControl>
+            <Box mt={2}>
+                {messageList.slice(0).reverse().map((item) => (
+                <AnswerBox>
+                    <Typography sx={{
+                        color: 'rgb(80, 105, 204)',
+                        fontSize: '15px',
+                        fontWeight: '700',
+                    }}
+                    >
+                        {item.authorValue}
+                    </Typography>
+                    <Typography sx={{
+                        color: 'black',
+                        fontSize: '17px',
+                        fontWeight: '300',
+                    }}
+                    >
+                        {item.textValue}
+                    </Typography>
+                </AnswerBox>))}
+            </Box>
         </div>
     )
 }
