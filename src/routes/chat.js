@@ -9,12 +9,12 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Chat () {
+export default function Chat (props) {
     const classes = useStyles();
     return (
         <div className={classes.chatGrid}>
             <CheckboxListSecondary/>
-            <MessageList/>
+            <MessageList messages={props.messages}/>
         </div>
     )
 }

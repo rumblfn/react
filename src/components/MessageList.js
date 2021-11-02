@@ -41,8 +41,8 @@ const Input = styled('input')`
   }
 `;
 
-function MessageList () {
-    const [messageList, setMessageList] = useState([])
+function MessageList (props) {
+    const [messageList, setMessageList] = useState(props.messages)
     const [textValue, setTextValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
 
@@ -52,7 +52,7 @@ function MessageList () {
     const botMessage = 'сообщение бота'
 
     useEffect(() => {
-        if (messageList.length === 0){
+        if (messageList.length === props.messages.length){
             return null;
         } else {
             const time = setTimeout(() => {
@@ -68,7 +68,6 @@ function MessageList () {
     function changeMessageList() {
         const newMessageList = [...messageList, {textValue, authorValue, id: Date.now()}];
         setTextValue('');
-        setAuthorValue('');
         elementInputTextRef.focus();
         setMessageList(newMessageList);
     }
