@@ -1,22 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from 'react-router-dom'
 import App from './App';
-import {ThemeProvider, createTheme} from "@material-ui/core";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#61dafb"
-    },
-    secondary: {
-      main: '#da61bf'
-    }
-  }
-})
+import { StrictMode } from "react"
 
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
-        <App />
-    </ThemeProvider>,
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
   document.getElementById('root')
 );

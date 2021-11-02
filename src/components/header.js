@@ -1,6 +1,7 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import ChatIcon from '@mui/icons-material/Chat';
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function header() {
     return (
@@ -10,7 +11,9 @@ function header() {
                     variant="h6"
                     component="span"
                 >
-                    Messenger
+                    <Link to="/" style={{ textDecoration: 'none', color: 'white'}}>
+                        Messenger
+                    </Link>
                 </Typography>
                 <IconButton
                     color="inherit"

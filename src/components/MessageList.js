@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import './messageList.css';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
-import InputUnstyled from '@mui/core/InputUnstyled';
 import { Box, styled } from '@mui/system';
 import { Typography } from '@mui/material';
 
@@ -10,15 +9,15 @@ const AnswerBox = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
     padding: '0 20px',
-    boxSizing: 'border-box',
+    boxSizing: 'border-box', 
     borderRadius: '5px',
     width: '80%',
     marginBottom: '10px'
   });
 
-const StyledInputElement = styled('input')`
+const Input = styled('input')`
   margin-right: 10px;
-  width: 200px;
+  width: 100%;
   font-size: 1rem;
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
@@ -42,16 +41,12 @@ const StyledInputElement = styled('input')`
   }
 `;
 
-const Input = React.forwardRef(function CustomInput(props, ref) {
-  return (
-    <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />
-  );
-});
-
-const MessageList = function() {
+function MessageList () {
     const [messageList, setMessageList] = useState([])
     const [textValue, setTextValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
+
+    let elementInputTextRef = null
 
     const botName = 'Бот'
     const botMessage = 'сообщение бота'
@@ -62,7 +57,7 @@ const MessageList = function() {
         } else {
             const time = setTimeout(() => {
                 if (messageList[messageList.length - 1].authorValue !== botName) {
-                    const newMessageList = [...messageList, {textValue: botMessage, authorValue: botName}];
+                    const newMessageList = [...messageList, {textValue: botMessage, authorValue: botName, id: Date.now()}];
                     setMessageList(newMessageList);
                 }
             }, 1500);
@@ -71,11 +66,10 @@ const MessageList = function() {
     }, [messageList]);
 
     function changeMessageList() {
-        const newMessageList = [...messageList, {textValue, authorValue}];
+        const newMessageList = [...messageList, {textValue, authorValue, id: Date.now()}];
         setTextValue('');
         setAuthorValue('');
-        let focus = document.querySelector('#input-focus');
-        focus.focus();
+        elementInputTextRef.focus();
         setMessageList(newMessageList);
     }
 
@@ -84,14 +78,16 @@ const MessageList = function() {
             <FormControl sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <div className="input-group">
                     <Input
+                        className="input-text"
                         id="input-focus"
-                        autoFocus="True"
                         type="text"
+                        ref={(InputTextRef) => { elementInputTextRef = InputTextRef}}
                         value={textValue}
                         onChange={event => setTextValue(event.target.value)}
                         placeholder="text..."
                     ></Input>
                     <Input
+                        className="input-author"
                         type="text"
                         value={authorValue}
                         onChange={event => setAuthorValue(event.target.value)}
@@ -102,7 +98,7 @@ const MessageList = function() {
             </FormControl>
             <Box mt={2}>
                 {messageList.slice(0).reverse().map((item) => (
-                <AnswerBox>
+                <AnswerBox key={item.id}>
                     <Typography sx={{
                         color: 'rgb(80, 105, 204)',
                         fontSize: '15px',

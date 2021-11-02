@@ -1,9 +1,8 @@
 .message-list {
-    width: 50%;
+    width: 100%;
     min-height: 100vh;
     border-left: 3px solid #AFEEEE;
     border-right: 3px solid #AFEEEE;
-    margin: auto;
     background-color:#E0FFFF;
     padding: 10px;
     box-sizing: border-box;
@@ -24,19 +23,13 @@
 }
 
 .input-text {
-    width: 70%;
-    padding:10px;
-    border:0;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
-    box-sizing: border-box;
+    flex-grow: 1;
+    margin-right: 30px;
 }
 
 .input-author {
-    width: 25%;
-    padding:10px;
-    border:0;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
-    box-sizing: border-box;
+    flex-grow: 0.25;
+    margin-right: 30px;
 }
 
 .btnAddMessage {
