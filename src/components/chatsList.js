@@ -7,23 +7,31 @@ import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { IconButton} from '@mui/material'
+import { IconButton} from '@mui/material';
+import {useDispatch, useSelector} from 'react-redux';
 
 const accountName = 'account'
 
 export default function CheckboxListSecondary() {
-    const [chatList, setChatList] = useState([{textValue: 'user1', id: 1}, {textValue: 'user2', id: 2}, {textValue: 'user3', id: 3},])
     const [textValue, setTextValue] = useState('')
 
-    function changeMessageList() {
-        const newChatList = [...chatList, {textValue, id: Date.now()}];
-        setTextValue('');
-        setChatList(newChatList);
+    const dispatch = useDispatch()
+    const users = useSelector(state => Object.keys(state).slice(2,))
+
+    function addMessageList() {
+        if (textValue) {
+            dispatch({type: 'ADD_USER', userName: textValue});
+            setTextValue('');
+        }
     }
+
+    // function removeMessageList(user) {
+    //     dispatch({type: 'REMOVE_USER', user});
+    // }
 
     return (
         <List dense sx={{ width: '100%', maxWidth: '360px', bgcolor: 'background.paper'}}>
-            <Button variant="contained" color="success" sx={{position: 'absolute', right: '10px', top: '-50px',}} onClick={changeMessageList}>
+            <Button variant="contained" color="success" sx={{position: 'absolute', right: '10px', top: '-50px',}} onClick={addMessageList}>
                 Добавить чат
             </Button>
             <ListItem key="input_new_chat" disablePadding>
@@ -46,17 +54,17 @@ export default function CheckboxListSecondary() {
                             </Link>
                         </ListItemButton>
                     </ListItem>
-            {chatList.map((item) => {
-                const labelId = `checkbox-list-secondary-label-${item.id}`;
-                const href = `/chat/${item.id}`
+            {users.map((user) => {
+                const labelId = `checkbox-list-secondary-label-${user}`;
+                const href = `/chat/${user}`
                 return (
                     <ListItem
-                        key={item.id}
+                        key={user}
                         disablePadding
                     >
                         <ListItemButton>
                             <Link href={href} underline="none" width="100%">
-                                <ListItemText id={labelId} primary={item.textValue} />
+                                <ListItemText id={labelId} primary={user} />
                             </Link>
                         </ListItemButton>
                         <IconButton

@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import { Box, styled } from '@mui/system';
 import { Typography } from '@mui/material';
+// import {useDispatch, useSelector} from 'react-redux';
 
 const AnswerBox = styled(Box)({
     display: 'flex',
@@ -41,8 +42,8 @@ const Input = styled('input')`
   }
 `;
 
-function MessageList (props) {
-    const [messageList, setMessageList] = useState(props.messages)
+function MessageList () {
+    const [messageList, setMessageList] = useState([])
     const [textValue, setTextValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
 
@@ -51,8 +52,12 @@ function MessageList (props) {
     const botName = 'Бот'
     const botMessage = 'сообщение бота'
 
+    // const dispatch = useDispatch()
+    // const messages = useSelector(state => state.messageList)
+    // setMessageList(messages)
+
     useEffect(() => {
-        if (messageList.length === props.messages.length){
+        if (messageList.length === 0){
             return null;
         } else {
             const time = setTimeout(() => {

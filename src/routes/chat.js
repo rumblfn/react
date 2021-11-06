@@ -11,14 +11,10 @@ const useStyles = makeStyles({
 
 export default function Chat (props) {
     const classes = useStyles();
-    let messages = props.messages;
-    if (messages === undefined) {
-        messages = []
-    }
     return (
         <div className={classes.chatGrid}>
             <CheckboxListSecondary/>
-            <MessageList messages={messages}/>
+            <MessageList/>
         </div>
     )
 }
