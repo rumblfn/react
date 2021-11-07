@@ -8,30 +8,16 @@ import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { IconButton} from '@mui/material';
-import {useDispatch, useSelector} from 'react-redux';
 
 const accountName = 'account'
 
 export default function CheckboxListSecondary() {
     const [textValue, setTextValue] = useState('')
-
-    const dispatch = useDispatch()
-    const users = useSelector(state => Object.keys(state).slice(2,))
-
-    function addMessageList() {
-        if (textValue) {
-            dispatch({type: 'ADD_USER', userName: textValue});
-            setTextValue('');
-        }
-    }
-
-    // function removeMessageList(user) {
-    //     dispatch({type: 'REMOVE_USER', user});
-    // }
-
+    const users = ['user1', 'user2', 'user3', 'user4', 'user5']
+    
     return (
         <List dense sx={{ width: '100%', maxWidth: '360px', bgcolor: 'background.paper'}}>
-            <Button variant="contained" color="success" sx={{position: 'absolute', right: '10px', top: '-50px',}} onClick={addMessageList}>
+            <Button variant="contained" color="success" sx={{position: 'absolute', right: '10px', top: '-50px',}}>
                 Добавить чат
             </Button>
             <ListItem key="input_new_chat" disablePadding>

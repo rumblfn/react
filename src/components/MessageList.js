@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import { Box, styled } from '@mui/system';
 import { Typography } from '@mui/material';
-// import {useDispatch, useSelector} from 'react-redux';
 
 const AnswerBox = styled(Box)({
     display: 'flex',
