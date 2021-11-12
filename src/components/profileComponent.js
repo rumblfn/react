@@ -16,8 +16,8 @@ export default function ProfileComponent () {
     const classes = useStyles();
 
     const dispatch = useDispatch();
-    const isShow = useSelector((state) => state.isShow)
-    const profileName = useSelector((state) => state.profileName)
+    const isShow = useSelector((state) => state.profile.isShow)
+    const profileName = useSelector((state) => state.profile.profileName)
 
     return (
         <div className={classes.profilePage}>

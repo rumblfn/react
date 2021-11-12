@@ -41,7 +41,7 @@ const Input = styled('input')`
   }
 `;
 
-function MessageList () {
+export const MessageList = () => {
     const [messageList, setMessageList] = useState([])
     const [textValue, setTextValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
@@ -123,5 +123,3 @@ function MessageList () {
         </div>
     )
 }
-
-export default MessageList;

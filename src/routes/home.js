@@ -1,9 +1,9 @@
-import CheckboxListSecondary from "../components/chatsList.js";
+import { Chats } from "../routes/chats";
 
-export default function Home () {
+export const Home = () => {
     return (
         <div>
-            <CheckboxListSecondary/>
+            <Chats/>
         </div>
     )
 }

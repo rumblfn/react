@@ -1,6 +1,6 @@
-import CheckboxListSecondary from "../components/chatsList.js";
-import MessageList from "../components/MessageList.js";
-import {makeStyles} from "@material-ui/core/styles"
+import {Chats} from './chats'
+import {MessageList} from '../components/MessageList'
+import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
     chatGrid: {
@@ -9,11 +9,12 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Chat (props) {
+export const  Chat = () => {
     const classes = useStyles();
+
     return (
         <div className={classes.chatGrid}>
-            <CheckboxListSecondary/>
+            <Chats/>
             <MessageList/>
         </div>
     )

@@ -11,13 +11,14 @@ import { IconButton} from '@mui/material';
 
 const accountName = 'account'
 
-export default function CheckboxListSecondary() {
+export default function CheckboxListSecondary(props) {
+    console.log(props)
     const [textValue, setTextValue] = useState('')
-    const users = ['user1', 'user2', 'user3', 'user4', 'user5']
-    
+    const users = props.list || []
+    console.log(users)
     return (
         <List dense sx={{ width: '100%', maxWidth: '360px', bgcolor: 'background.paper'}}>
-            <Button variant="contained" color="success" sx={{position: 'absolute', right: '10px', top: '-50px',}}>
+            <Button variant="contained" color="success" sx={{position: 'absolute', right: '10px', top: '-50px',}} onClick={props.onCreate}>
                 Добавить чат
             </Button>
             <ListItem key="input_new_chat" disablePadding>
@@ -41,16 +42,16 @@ export default function CheckboxListSecondary() {
                         </ListItemButton>
                     </ListItem>
             {users.map((user) => {
-                const labelId = `checkbox-list-secondary-label-${user}`;
-                const href = `/chat/${user}`
+                const labelId = `checkbox-list-secondary-label-${user.id}`;
+                const href = `/chat/${user.id}`
                 return (
                     <ListItem
-                        key={user}
+                        key={user.id}
                         disablePadding
                     >
                         <ListItemButton>
                             <Link href={href} underline="none" width="100%">
-                                <ListItemText id={labelId} primary={user} />
+                                <ListItemText id={labelId} primary={user.name} />
                             </Link>
                         </ListItemButton>
                         <IconButton

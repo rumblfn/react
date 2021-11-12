@@ -1,4 +1,4 @@
-import CheckboxListSecondary from "../components/chatsList.js";
+import { Chats } from "../routes/chats";
 import ProfileComponent from "../components/profileComponent.js";
 import {makeStyles} from "@material-ui/core/styles"
 
@@ -9,11 +9,11 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Profile () {
+export const Profile = () => {
     const classes = useStyles();
     return (
         <div className={classes.wrapper}>
-            <CheckboxListSecondary/>
+            <Chats/>
             <ProfileComponent/>
         </div>
     )
