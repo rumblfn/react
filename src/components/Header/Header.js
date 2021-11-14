@@ -3,26 +3,25 @@ import ChatIcon from '@mui/icons-material/Chat';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-function header() {
+export const Header = () => {
     return (
-        <AppBar position="static">
+        <AppBar sx={{backgroundColor: 'rgb(81, 20, 122)', height: '64px'}}>
             <Toolbar>
                 <Typography
                     variant="h6"
                     component="span"
+                    fontSize='30px'
                 >
-                    <Link to="/" style={{ textDecoration: 'none', color: 'white'}}>
+                    <Link to="/home" style={{ textDecoration: 'none', color: 'white'}}>
                         Messenger
                     </Link>
                 </Typography>
                 <IconButton
                     color="inherit"
                 >
-                    <ChatIcon></ChatIcon>
+                    <ChatIcon/>
                 </IconButton>
             </Toolbar>
         </AppBar>
     )
 }
-
-export default header

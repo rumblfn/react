@@ -1,24 +1,32 @@
-import Header from "./components/header.js";
-import {Switch, Route} from 'react-router-dom';
-import {Home} from './routes/home.js'
-import {Profile} from './routes/profile.js'
-import {Chat} from './routes/chat.js'
-import './style.css'
+import { Header } from './components/Header/Header'
+import {Routes, Route} from 'react-router-dom';
+import {PageNotFoundRoute} from "./routes/PageNotFound/PageNotFound";
+import {Home} from './routes/Home/Home'
+import {Chat} from './routes/Chat/Chat'
 
-function App() {
-  return (
-    <>
-    <Header/>
-    <Switch>
-      <Route path="/" exact component={Home}/>
-      <Route path="/profile" exact component={Profile}/>
-      <Route path="/chat/:chatID" component={Chat}/>
-      <Route path="/">
-        <div>404 page not found</div>
-      </Route>
-    </Switch>
-    </>
-  );
+const dvStyle = {
+    height: '86vh'
 }
 
-export default App;
+const containerStyle = {
+    maxWidth: '1400px',
+    padding: '64px 20px 20px',
+    margin: '0 auto',
+    height: '100%'
+}
+
+
+export const App = () => {
+    return (
+        <div style={dvStyle}>
+            <Header/>
+            <div style={containerStyle}>
+                <Routes>
+                    <Route path='/home' element={<Home/>}/>
+                    <Route path='/*' element={<PageNotFoundRoute/>}/>
+                    <Route path='/chats/:chatId' element={<Chat/>}/>
+                </Routes>
+            </div>
+        </div>
+    );
+}

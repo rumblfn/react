@@ -1,5 +1,11 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nova Round', cursive;
+}
+
+#root {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
 }
