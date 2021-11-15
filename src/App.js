@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import {PageNotFoundRoute} from "./routes/PageNotFound/PageNotFound";
 import {Home} from './routes/Home/Home'
 import {Chat} from './routes/Chat/Chat'
+import { Profile } from "./components/Profile";
 
 const dvStyle = {
     height: '86vh'
@@ -23,6 +24,7 @@ export const App = () => {
             <div style={containerStyle}>
                 <Routes>
                     <Route path='/home' element={<Home/>}/>
+                    <Route path='/profile' element={<Profile/>}/>
                     <Route path='/*' element={<PageNotFoundRoute/>}/>
                     <Route path='/chats/:chatId' element={<Chat/>}/>
                 </Routes>

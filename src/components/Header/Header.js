@@ -6,21 +6,35 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
     return (
         <AppBar sx={{backgroundColor: 'rgb(81, 20, 122)', height: '64px'}}>
-            <Toolbar>
+            <Toolbar sx={{
+                display: "flex",
+                justifyContent: 'space-between',
+            }}>
+                <div>
+                    <Typography
+                        variant="h6"
+                        component="span"
+                        fontSize='30px'
+                    >
+                        <Link to="/home" style={{ textDecoration: 'none', color: 'white'}}>
+                            Messenger
+                        </Link>
+                    </Typography>
+                    <IconButton
+                        color="inherit"
+                    >
+                        <ChatIcon/>
+                    </IconButton>
+                </div>
                 <Typography
                     variant="h6"
                     component="span"
-                    fontSize='30px'
+                    fontSize='26px'
                 >
-                    <Link to="/home" style={{ textDecoration: 'none', color: 'white'}}>
-                        Messenger
+                    <Link to="/profile" style={{ textDecoration: 'none', color: 'white'}}>
+                        Profile page
                     </Link>
                 </Typography>
-                <IconButton
-                    color="inherit"
-                >
-                    <ChatIcon/>
-                </IconButton>
             </Toolbar>
         </AppBar>
     )

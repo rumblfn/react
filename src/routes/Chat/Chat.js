@@ -25,11 +25,10 @@ export const ChatRender = ({chat}) => {
                 <ChatMessages chatId={chatId}/>
             </div>
         )
-    } else {
-        return (
-            <PageNotFoundRoute/>
-        )
     }
+    return (
+        <PageNotFoundRoute/>
+    )
 }
 
 export const Chat = chatConnect(ChatRender)
