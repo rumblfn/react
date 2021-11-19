@@ -26,15 +26,27 @@ export const Header = () => {
                         <ChatIcon/>
                     </IconButton>
                 </div>
-                <Typography
-                    variant="h6"
-                    component="span"
-                    fontSize='26px'
-                >
-                    <Link to="/profile" style={{ textDecoration: 'none', color: 'white'}}>
-                        Profile page
-                    </Link>
-                </Typography>
+                <div>
+                    <Typography
+                        variant="h6"
+                        component="span"
+                        fontSize='26px'
+                        marginRight='48px'
+                    >
+                        <Link to="/posts" style={{ textDecoration: 'none', color: 'white'}}>
+                            Posts
+                        </Link>
+                    </Typography>
+                    <Typography
+                        variant="h6"
+                        component="span"
+                        fontSize='26px'
+                    >
+                        <Link to="/profile" style={{ textDecoration: 'none', color: 'white'}}>
+                            Profile page
+                        </Link>
+                    </Typography>
+                </div>
             </Toolbar>
         </AppBar>
     )
