@@ -1,6 +1,6 @@
 import React from 'react';
 import {ChatMessages} from '../../components/ChatMessages'
-import {Navigate, Route, Routes, useParams} from "react-router-dom";
+import {Navigate, Route, useParams} from "react-router-dom";
 import {chatConnect} from "../../connect/chat";
 import {CreateChatForm} from "../../components/CreateChat";
 import {ChatList} from "../../components/ChatList";
@@ -50,15 +50,8 @@ export const ChatRender = ({chat}) => {
         )
     }
     return (
-        <div style={divStyle3}>
-            <div style={divStyle2}>
-                <div style={divStyle}>
-                    <CreateChatForm/>
-                    <ChatList/>
-                </div>
-            </div>
-        </div>
+        <Route path="/" element={<Navigate replace to="/home" />} />
     )
 }
 
-export const Chat = chatConnect(ChatRender)
+export const ChatWithMessages = chatConnect(ChatRender)

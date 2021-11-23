@@ -13,8 +13,8 @@ const mapDispatchToProps = (dispatch) => ({
     removeChatMessages(chatId) {
         return dispatch(removeChatMessages(chatId));
     },
-    createMessage(chatId, textValue, authorValue, messageId) {
-        return dispatch(createMessage(chatId, textValue, authorValue, messageId))
+    createMessage(chat) {
+        return dispatch(createMessage(chat))
     }
 })
 

@@ -5,14 +5,14 @@ import { postsReducer } from "./posts";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { profileReducer } from "./profile";
 import thunk from 'redux-thunk';
-import storage from 'redux-persist/lib/storage';
-import persistReducer from "redux-persist/es/persistReducer";
+// import storage from 'redux-persist/lib/storage';
+// import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
 
-const persistConfig = {
-    key: 'root',
-    storage,
-}
+// const persistConfig = {
+//     key: 'root',
+//     storage,
+// }
 
 const rootReducer = combineReducers({
     chats: chatsReducer,
@@ -21,14 +21,14 @@ const rootReducer = combineReducers({
     posts: postsReducer,
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-const fetchMiddleWare = store => next => action => {
-    console.log(action)
-}
+// const persistedReducer = persistReducer(persistConfig, rootReducer)
+//
+// const fetchMiddleWare = store => next => action => {
+//     console.log(action)
+// }
 
 export const store = createStore(
-    persistedReducer,
+    rootReducer,
     composeWithDevTools(applyMiddleware(thunk))
 )
 

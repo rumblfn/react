@@ -1,4 +1,4 @@
-import {CREATE_MESSAGE, REMOVE_CHAT, CREATE_CHAT} from "./actions";
+import {CREATE_MESSAGE, REMOVE_CHAT, CREATE_CHAT, CLEAR_CHAT} from "./actions";
 
 const initialState = {
     messages: {},
@@ -7,25 +7,25 @@ const initialState = {
 export const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_MESSAGE: {
-            const {chatId, textValue, authorValue, messageId} = action.payload
-            const newMessages = {...state.messages}
-            newMessages[chatId] = [...newMessages[chatId], {
-                messageId: messageId,
-                textValue: textValue,
-                authorValue: authorValue,
-            }]
             return {
                 ...state,
-                messages: newMessages
+                messages: action.payload
             }
         }
         case CREATE_CHAT: {
-            const {chatId} = action.payload
+            console.log(state)
+            const {id} = action.payload
             const newMessages = {...state.messages}
-            newMessages[chatId] = []
+            newMessages[id] = []
             return {
                 ...state,
                 messages: {...newMessages}
+            }
+        }
+        case CLEAR_CHAT: {
+            return {
+                ...state,
+                messages: {}
             }
         }
         case REMOVE_CHAT: {

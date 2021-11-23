@@ -8,6 +8,7 @@ export const ChatListRender = ({chats, removeChat, removeChatMessages}) => {
     if (chats.chats.length === 0) {
         chatEmpty = "Chat's list is empty"
     }
+
     return (
         <ChatListView
             chatEmpty={chatEmpty}

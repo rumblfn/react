@@ -1,10 +1,11 @@
-export const CREATE_MESSAGE = 'CREAETE_MESSAGE';
+export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 export const REMOVE_CHAT = 'REMOVE_CHAT';
-export const CREATE_CHAT = 'CREATE_CHAT'
+export const CREATE_CHAT = 'CREATE_CHAT';
+export const CLEAR_CHAT = 'CLEAR_CHAT';
 
-export const createMessage = (chatId, textValue, authorValue, messageId) => ({
+export const createMessage = (chat) => ({
     type: CREATE_MESSAGE,
-    payload: {chatId, textValue, authorValue, messageId},
+    payload: chat,
 })
 
 export const removeChatMessages = (chat_Id) => ({
@@ -12,7 +13,11 @@ export const removeChatMessages = (chat_Id) => ({
     payload: chat_Id,
 })
 
-export const createChatMessages = (chatId) => ({
+export const createChatMessages = (chat) => ({
     type: CREATE_CHAT,
-    payload: {chatId},
+    payload: chat,
+})
+
+export const clearChatMessages = () => ({
+    type: CLEAR_CHAT,
 })

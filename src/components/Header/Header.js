@@ -2,6 +2,7 @@ import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import ChatIcon from '@mui/icons-material/Chat';
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './linkSpanStyle.css'
 
 export const Header = () => {
     return (
@@ -31,10 +32,27 @@ export const Header = () => {
                         variant="h6"
                         component="span"
                         fontSize='26px'
-                        marginRight='48px'
+                    >
+                        <Link to="/signup" style={{ textDecoration: 'none', color: 'white'}}>
+                            <span className='gradient-text'>Registration / </span>
+                        </Link>
+                    </Typography>
+                    <Typography
+                        variant="h6"
+                        component="span"
+                        fontSize='26px'
+                    >
+                        <Link to="/login" style={{ textDecoration: 'none', color: 'white'}}>
+                            <span className='gradient-text'>Login / </span>
+                        </Link>
+                    </Typography>
+                    <Typography
+                        variant="h6"
+                        component="span"
+                        fontSize='26px'
                     >
                         <Link to="/posts" style={{ textDecoration: 'none', color: 'white'}}>
-                            Posts
+                            <span className='gradient-text'>Posts / </span>
                         </Link>
                     </Typography>
                     <Typography
@@ -43,7 +61,7 @@ export const Header = () => {
                         fontSize='26px'
                     >
                         <Link to="/profile" style={{ textDecoration: 'none', color: 'white'}}>
-                            Profile page
+                            <span className='gradient-text'>Profile page</span>
                         </Link>
                     </Typography>
                 </div>

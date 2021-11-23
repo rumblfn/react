@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {getChats, createChat, removeChat} from "../../store/chats";
+import {getChats, createChat, removeChat, clearChats} from "../../store/chats";
 import {removeChatMessages, createChatMessages} from "../../store/chat";
 
 
@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
     removeChatMessages(chat_Id) {
         return dispatch(removeChatMessages(chat_Id));
     },
+    clearChats() {
+        return dispatch(clearChats())
+    }
 })
 
 

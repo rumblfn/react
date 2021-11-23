@@ -1,23 +1,33 @@
 import React, {useState} from "react";
 import {chatConnect} from "../../connect/chat";
 import {nanoid} from "nanoid";
-import {addBotMessage} from "../../MidelwareElements";
-import {useDispatch} from "react-redux";
+// import {addBotMessage} from "../../MidelwareElements";
+// import {useDispatch} from "react-redux";
 import { ChatMessagesView } from "./presentationComponent";
+import {auth, db} from "../../firebase";
 
 
-export const ChatMessagesRender = ({chatId, createMessage, chat}) => {
+export const ChatMessagesRender = ({createMessage, chat}) => {
     const [textValue, setTextValue] = useState('')
-    const authorValue = 'user'
+    // const authorValue = 'user'
+    console.log(chat)
+    const chatId = auth.currentUser.uid
     const messages = chat[chatId] || []
-    const dispatch = useDispatch()
+    console.log(chatId)
+    // const dispatch = useDispatch()
 
     const addMessage = () => {
         if (textValue !== '') {
             const messageId = nanoid()
-            createMessage(chatId, textValue, authorValue, messageId)
+            const message = {
+                messageId: messageId,
+                textValue: textValue,
+                authorValue: auth.currentUser.uid
+            }
+            createMessage(message)
+            db.ref('messages').push(message)
             setTextValue('')
-            dispatch(addBotMessage(chatId))
+            // dispatch(addBotMessage(chatId))
         }
     }
 

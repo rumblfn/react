@@ -5,6 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import React from "react";
 import {styled} from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import {db} from "../../firebase";
 
 const Paper2 = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -19,13 +20,34 @@ const Paper2 = styled(Paper)(({ theme }) => ({
     borderRadius: '15px 4px 4px 15px',
 }));
 
-export const ChatListView = ({chatEmpty, chats, removeChat, removeChatMessages}) => {
+export const ChatListView = ({chatEmpty, chats, removeChat}) => {
+    const removeChatFireBase = (chatId, userId) => {
+        removeChat(chatId)
+        // removeChatMessages(chatId)
+        db.ref("chats").on('value', function(snap){
+            for (let el in snap.val()) {
+                if (snap.val()[el].id === chatId) {
+                    db.ref('chats').child(el).remove();
+                }
+            }
+        });
+    };
+    // console.log(chats)
+    const setChats = []
+    const chatIds = []
+    chats.chats.forEach((chat) => {
+        if (chatIds.indexOf(chat.id) === -1) {
+            setChats.push(chat)
+            chatIds.push(chat.id)
+        }
+    })
+
     return (
         <Paper2 elevation={2}>
             <span>{chatEmpty}</span>
             {
-                chats.chats.map(({id, name}) =>
-                    <Link as={LinkReact} underline='none' to={`/chats/${id}`} key={id} sx={{
+                setChats.map(({name, id}) =>
+                    <Link as={LinkReact} underline='none' to={`/chats/chat/${id}`} key={id} sx={{
                         display: "flex",
                         justifyContent: 'space-between',
                         color: 'rgb(20, 20, 60)',
@@ -35,8 +57,7 @@ export const ChatListView = ({chatEmpty, chats, removeChat, removeChatMessages})
                         <IconButton sx={{m: 1, color: 'rgb(30, 30, 90)'}} onClick={(event) => {
                             event.preventDefault();
                             event.stopPropagation();
-                            removeChat(id)
-                            removeChatMessages(id)
+                            removeChatFireBase(id)
                         }}>
                             <DeleteIcon />
                         </IconButton>
