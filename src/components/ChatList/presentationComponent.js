@@ -41,6 +41,7 @@ export const ChatListView = ({chatEmpty, chats, removeChat}) => {
             chatIds.push(chat.id)
         }
     })
+    console.log(setChats)
 
     return (
         <Paper2 elevation={2}>

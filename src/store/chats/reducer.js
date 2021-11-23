@@ -9,6 +9,7 @@ const filterChatById = (targetId) => ({id}) => targetId !== id;
 export const chatsReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_CHAT: {
+            console.log(action.payload)
             const { chat_name, id } = action.payload
             return {
                 ...state,
