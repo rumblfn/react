@@ -49,7 +49,8 @@ export const Login = () => {
             });
             db.ref("messages").on("value", (snapshot) => {
                 snapshot.forEach((snap) => {
-                    if (snap.val().userId === auth.currentUser.uid) {
+                    if (snap.val().authorValue === auth.currentUser.uid) {
+                        console.log(snap.val())
                         dispatch(createMessage(snap.val()))
                     }
                 });

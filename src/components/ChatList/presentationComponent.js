@@ -20,10 +20,10 @@ const Paper2 = styled(Paper)(({ theme }) => ({
     borderRadius: '15px 4px 4px 15px',
 }));
 
-export const ChatListView = ({chatEmpty, chats, removeChat}) => {
+export const ChatListView = ({chatEmpty, chats, removeChat, removeChatMessages}) => {
     const removeChatFireBase = (chatId, userId) => {
         removeChat(chatId)
-        // removeChatMessages(chatId)
+        removeChatMessages(chatId)
         db.ref("chats").on('value', function(snap){
             for (let el in snap.val()) {
                 if (snap.val()[el].id === chatId) {

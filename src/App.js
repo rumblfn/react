@@ -81,9 +81,10 @@ export const App = () => {
                             </PrivateRoute>
                         }
                     />
-                    <Route path="/chats" element={<PrivateRoute authed={authed}><Chat /></PrivateRoute>}>
-                        <Route path="chat/:chatId" element={<PrivateRoute authed={authed}><ChatWithMessages /></PrivateRoute>}/>
-                    </Route>
+                    <Route path="/chats"
+                           element={<PrivateRoute authed={authed}><Chat /></PrivateRoute>}/>
+                    <Route path="/chats/chat/:chatId"
+                           element={<PrivateRoute authed={authed}><ChatWithMessages /></PrivateRoute>}/>
                     <Route path='*' element={<PageNotFoundRoute/>}/>
                 </Routes>
             </div>

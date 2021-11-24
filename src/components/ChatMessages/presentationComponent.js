@@ -37,12 +37,35 @@ const senderMessageFormStyle = {
     display: 'flex',
 }
 
-export const ChatMessagesView = ({messages, textValue, setTextValue, addMessage}) => {
+export const ChatMessagesView = ({messages, textValue, setTextValue, addMessage, chatId2}) => {
+    // const setChats = []
+    // const chatIds = []
+    // chats.chats.forEach((chat) => {
+    //     if (chatIds.indexOf(chat.id) === -1) {
+    //         setChats.push(chat)
+    //         chatIds.push(chat.id)
+    //     }
+    // })
+    // console.log(setChats)
+    const newMessages = messages.filter((message) => {
+        if (message.chatId === chatId2) {
+            return message
+        }
+        return null
+    })
+    const setNewMessages = []  // messageId
+    const messagesIds = []
+    newMessages.forEach((message) => {
+        if (messagesIds.indexOf(message.messageId) === -1) {
+            setNewMessages.push(message);
+            messagesIds.push(message.messageId)
+        }
+    })
     return (
         <Box sx={{flexGrow: 1}}>
             <Paper2 elevation={6}>
                 <Box mt={2}>
-                    {messages.slice(0).map((item) => (
+                    {setNewMessages.slice(0).map((item) => (
                         <AnswerBox key={item.messageId}>
                             <Typography sx={{
                                 color: 'rgb(80, 105, 204)',

@@ -1,40 +1,39 @@
 import {CREATE_MESSAGE, REMOVE_CHAT, CREATE_CHAT, CLEAR_CHAT} from "./actions";
 
 const initialState = {
-    messages: {},
+    messages: [],
 }
 
 export const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_MESSAGE: {
+            console.log('state messages:', state.messages)
+            const newMessages = [...state.messages, action.payload]
             return {
                 ...state,
-                messages: action.payload
+                messages: newMessages,
             }
         }
         case CREATE_CHAT: {
             console.log(state)
-            const {id} = action.payload
-            const newMessages = {...state.messages}
-            newMessages[id] = []
+            const newMessages = [...state.messages, {...action.payload}]
             return {
                 ...state,
-                messages: {...newMessages}
+                messages: newMessages
             }
         }
         case CLEAR_CHAT: {
             return {
                 ...state,
-                messages: {}
+                messages: []
             }
         }
         case REMOVE_CHAT: {
             const chatId = action.payload
-            const newMessages = {...state.messages}
-            delete newMessages[chatId]
+            console.log(chatId)
+            console.log(state)
             return {
-                ...state,
-                messages: newMessages,
+                ...state
             }
         }
         default: {

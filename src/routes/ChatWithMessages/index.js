@@ -31,27 +31,34 @@ const divStyle = {
 
 export const ChatRender = ({chat}) => {
     const {chatId} = useParams();
-    let showChatPage = false
-    if (chat.hasOwnProperty(chatId)) {
-        showChatPage = true
-    }
-
-    if (showChatPage) {
-        return (
-            <div style={divStyle3}>
-                <div style={divStyle2}>
-                    <div style={divStyle}>
-                        <CreateChatForm/>
-                        <ChatList/>
-                    </div>
-                </div>
-                <ChatMessages chatId={chatId}/>
-            </div>
-        )
-    }
+    console.log(chatId)
+    console.log('chat:', chat)
     return (
-        <Route path="/" element={<Navigate replace to="/home" />} />
+        <div style={divStyle3}>
+            <div style={divStyle2}>
+                <div style={divStyle}>
+                    <CreateChatForm/>
+                    <ChatList/>
+                </div>
+            </div>
+            <ChatMessages chatId={chatId}/>
+        </div>
     )
+    // if (chat.hasOwnProperty(chatId)) {
+    //     return (
+    //         <div style={divStyle3}>
+    //             <div style={divStyle2}>
+    //                 <div style={divStyle}>
+    //                     <CreateChatForm/>
+    //                     <ChatList/>
+    //                 </div>
+    //             </div>
+    //             <ChatMessages chatId={chatId}/>
+    //         </div>
+    //     )
+    // } else {
+    //     return <Navigate to='/home'/>
+    // }
 }
 
 export const ChatWithMessages = chatConnect(ChatRender)
