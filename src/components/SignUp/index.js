@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { auth, rootRef } from "../../firebase";
 import { Link } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import '../Login/loginAndSignUpStyles.css'
+import Button from '@mui/material/Button';
+import firebase from "firebase";
 
 export const SignUp = () => {
     const [email, setEmail] = useState("");
@@ -21,38 +26,48 @@ export const SignUp = () => {
 
         try {
             await auth.createUserWithEmailAndPassword(email, password);
+            setEmail('')
+            setPassword('')
         } catch (error) {
             setError(error.message);
         }
     };
 
     return (
-        <div>
+        <div className='mainPage'>
             <form onSubmit={handleSubmit}>
                 <p>Fill in the form below to register new account.</p>
-                <div>
-                    <input
-                        placeholder="Email"
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        width: '100%'
+                    }}
+                >
+                    <TextField
+                        id="demo-helper-text-misaligned-no-helper"
+                        label="Email"
                         name="email"
                         type="email"
                         onChange={handleEmailChange}
                         value={email}
+                        sx={{m: 1, mt: 3}}
                     />
-                </div>
-                <div>
-                    <input
-                        placeholder="Password"
+                    <TextField
+                        sx={{m: 1, mb: 3}}
+                        id="demo-helper-text-misaligned-no-helper"
+                        label="Password"
                         name="password"
                         onChange={handlePassChange}
                         value={password}
                         type="password"
                     />
-                </div>
+                </Box>
                 <div>
                     {error && <p>{error}</p>}
-                    <button type="submit">Login</button>
+                    <Button variant="contained" type="submit">Login</Button>
                 </div>
-                <hr />
+                <br/>
                 <p>
                     Already have an account? <Link to="/login">Sign in</Link>
                 </p>

@@ -44,7 +44,7 @@ export const Profile = () => {
                 }}/>
             </div>
             <div style={middleDiv}>
-                <p>Profile auth: {profileAuth}</p>
+                <p>Profile auth (name): {profileAuth}</p>
                 <p>Profile email: {profileEmail}</p>
             </div>
             <Button variant="outlined" color="error" onClick={sign_out}>
