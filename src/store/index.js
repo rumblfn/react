@@ -7,7 +7,7 @@ import { profileReducer } from "./profile";
 import thunk from 'redux-thunk';
 // import storage from 'redux-persist/lib/storage';
 // import persistReducer from "redux-persist/es/persistReducer";
-import persistStore from "redux-persist/es/persistStore";
+// import persistStore from "redux-persist/es/persistStore";
 
 // const persistConfig = {
 //     key: 'root',
@@ -32,4 +32,4 @@ export const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 )
 
-export const persistedStore = persistStore(store)
+// export const persistedStore = persistStore(store)

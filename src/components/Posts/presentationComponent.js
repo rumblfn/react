@@ -46,7 +46,7 @@ export const PostsView = ({loading, error, posts, getData}) => {
                     <LoadingButton
                         onClick={getData}
                         loading={loading}
-                            loadingIndicator="Loading..."
+                        loadingIndicator="Loading..."
                         variant="outlined"
                     >
                         Fetch data
