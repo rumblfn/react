@@ -12,7 +12,6 @@ import { auth } from "./firebase";
 import { ChatWithMessages } from "./routes/ChatWithMessages";
 import { PrivateRoute } from "./hocs/PrivateRoute";
 import { PublicRoute } from "./hocs/PublicRoute";
-import firebase from "firebase";
 
 const dvStyle = {
     height: '86vh'
